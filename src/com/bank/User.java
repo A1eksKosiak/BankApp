@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class User {
+public class User extends AccountHolder {
 
     private String id;
     private String password;
