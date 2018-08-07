@@ -19,7 +19,7 @@ public class Main {
 //        user.addNewAccount("EUR");
 
         int userOption;
-        do {
+        while (true) {
             System.out.println("Welcome to " + bank.getBankName() + " bank!");
             System.out.println("Choose your action:");
             System.out.println("1 - create new user.");
@@ -37,7 +37,14 @@ public class Main {
                     System.out.println("1 - private person");
                     System.out.println("2 - business client");
                     System.out.println("3 - fund");
+                    System.out.println("9 - return");
+                    System.out.println("0 - exit");
                     int accountHolderType = scanner.nextInt();
+                    if (accountHolderType == 9) {
+                        break;
+                    } else if (accountHolderType == 0) {
+                        return;
+                    }
                     System.out.println("Input your password");
                     String password = scanner.next();
                     System.out.println("Input your name");
@@ -74,7 +81,6 @@ public class Main {
                                     answerForSecretQuestion);
                             bank.addUser(newBusiness);
                             newBusiness.addNewAccount("EUR");
-
                             break;
                         case 3:
                             Fund newFund = new Fund(password,
@@ -87,8 +93,10 @@ public class Main {
                             bank.addUser(newFund);
                             newFund.addNewAccount("EUR");
                             break;
-                        case 0:
+                        case 9:
                             break;
+                        case 0:
+                            return;
                         default:
                             break;
                     }
@@ -119,6 +127,6 @@ public class Main {
                 default:
                     break;
             }
-        } while (true);
+        }
     }
 }
