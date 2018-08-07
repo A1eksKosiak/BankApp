@@ -1,12 +1,13 @@
 package com.bank;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bank {
 
     private String bankName;
 
-    private ArrayList<User> clients;
+    private List<User> clients;
 
     public Bank(String bankName) {
         this.bankName = bankName;
@@ -47,11 +48,38 @@ public class Bank {
 
     public void addMoneyToUser(String userID, long accountID, double amountOfMoney) {
         for (User user : clients) {
-            if (user.getId() == userID) {
-                if (user.findAccountNumber(accountID)) {
-                    user.addMoneyToAccount(accountID, amountOfMoney);
+            if (user.getId().equals(userID)) {
+                user.addMoneyToAccount(accountID, amountOfMoney);
+                return;
+            }
+        }
+    }
+
+    public String getUserID(String userName) {
+        if (findUser(userName)) {
+            for (User user : clients) {
+                if (user.getFullName() == userName) {
+                    return user.getId();
                 }
             }
         }
+        return "N/A";
+    }
+
+    public boolean findUser(String userName) {
+        for (User user : clients) {
+            if (user.getFullName() == userName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "bankName='" + bankName + '\'' +
+                ", clients=" + clients +
+                '}';
     }
 }

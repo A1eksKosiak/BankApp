@@ -44,9 +44,11 @@ public class User {
     }
 
     public void addMoneyToAccount(long accountNumber, double moneyAmount) {
-        for (Account account : accounts) {
-            if (account.getAccountNumber() == accountNumber) {
-                account.addMoneyToAccount(moneyAmount);
+        if (findAccountNumber(accountNumber)) {
+            for (Account account : accounts) {
+                if (account.getAccountNumber() == accountNumber) {
+                    account.addMoneyToAccount(moneyAmount);
+                }
             }
         }
     }
@@ -139,11 +141,11 @@ public class User {
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
+                ", accounts=" + accounts +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", secretQuestion='" + secretQuestion + '\'' +
                 ", answerForSecretQuestion='" + answerForSecretQuestion + '\'' +
                 '}';
     }
-
 }
