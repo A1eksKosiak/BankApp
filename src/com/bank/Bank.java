@@ -7,7 +7,7 @@ public class Bank {
 
     private String bankName;
 
-    private List<User> clients;
+    private List<AccountHolder> clients;
 
     public Bank(String bankName) {
         this.bankName = bankName;
@@ -25,31 +25,31 @@ public class Bank {
                         String email,
                         String secretQuestion,
                         String answerForSecretQuestion) {
-        User newUser = new User(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
-        clients.add(newUser);
+        AccountHolder newAccountHolder = new User(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
+        clients.add(newAccountHolder);
     }
 
-    public void addUser(User user) {
-        clients.add(user);
+    public void addUser(AccountHolder accountHolder) {
+        clients.add(accountHolder);
     }
 
     public Double totalAmountOfMoney(String userID) {
-        for (User user : clients) {
-            if (user.getId().equals(userID)) {
-                return user.totalAmount();
+        for (AccountHolder accountHolder : clients) {
+            if (accountHolder.getId().equals(userID)) {
+                return accountHolder.totalAmount();
             }
         }
         return null;
     }
 
-    public double totalAmountOfMoney(User user) {
-        return user.totalAmount();
+    public double totalAmountOfMoney(AccountHolder accountHolderr) {
+        return accountHolderr.totalAmount();
     }
 
     public void addMoneyToUser(String userID, long accountID, double amountOfMoney) {
-        for (User user : clients) {
-            if (user.getId().equals(userID)) {
-                user.addMoneyToAccount(accountID, amountOfMoney);
+        for (AccountHolder accountHolder : clients) {
+            if (accountHolder.getId().equals(userID)) {
+                accountHolder.addMoneyToAccount(accountID, amountOfMoney);
                 return;
             }
         }
@@ -57,9 +57,9 @@ public class Bank {
 
     public String getUserID(String userName) {
         if (findUser(userName)) {
-            for (User user : clients) {
-                if (user.getFullName() == userName) {
-                    return user.getId();
+            for (AccountHolder accountHolder : clients) {
+                if (accountHolder.getName() == userName) {
+                    return accountHolder.getId();
                 }
             }
         }
@@ -67,8 +67,8 @@ public class Bank {
     }
 
     public boolean findUser(String userName) {
-        for (User user : clients) {
-            if (user.getFullName() == userName) {
+        for (AccountHolder accountHolder : clients) {
+            if (accountHolder.getName() == userName) {
                 return true;
             }
         }
