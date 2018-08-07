@@ -6,6 +6,8 @@ import java.util.UUID;
 
 public class User extends AccountHolder {
 
+    final private static int FINE = 5;
+
     private String id;
     private List<Account> accounts;
 
@@ -22,4 +24,9 @@ public class User extends AccountHolder {
         this.accounts = new ArrayList<>();
     }
 
+    @Override
+    public void addMoneyToAccount(long accountNumber, double moneyAmount) {
+        moneyAmount = (moneyAmount / 100) * (100 - FINE);
+        super.addMoneyToAccount(accountNumber, moneyAmount);
+    }
 }

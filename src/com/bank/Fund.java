@@ -22,5 +22,11 @@ public class Fund extends AccountHolder {
         this.accounts = new ArrayList<>();
     }
 
-
+    @Override
+    public void addNewAccount(String currency) {
+        if (accounts.size() >= 1){
+            return;
+        }
+            super.addNewAccount(currency);
+    }
 }
