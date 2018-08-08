@@ -62,7 +62,7 @@ public abstract class AccountHolder {
         return false;
     }
 
-    public void addNewAccount(String currency) {
+    public void addNewAccount(Currency currency) {
         Account newAccount = new Account(currency);
         accounts.add(newAccount);
     }

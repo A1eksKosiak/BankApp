@@ -2,6 +2,10 @@ package com.bank;
 
 import java.util.Scanner;
 
+import static com.bank.Currency.EUR;
+import static com.bank.Currency.GBP;
+import static com.bank.Currency.USD;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -109,7 +113,7 @@ public class Main {
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newUser);
-            newUser.addNewAccount("EUR");
+            newUser.addNewAccount(EUR);
         } else if (caseNumber == 2) {
             Business newBusiness = new Business(password,
                     fullName,
@@ -119,7 +123,7 @@ public class Main {
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newBusiness);
-            newBusiness.addNewAccount("EUR");
+            newBusiness.addNewAccount(USD);
         } else if (caseNumber == 3) {
             Fund newFund = new Fund(password,
                     fullName,
@@ -129,7 +133,7 @@ public class Main {
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newFund);
-            newFund.addNewAccount("EUR");
+            newFund.addNewAccount(GBP);
         }
     }
 

@@ -58,7 +58,7 @@ public class Bank {
         return false;
     }
 
-    public void addAccountToUser(String userId, String currency) {
+    public void addAccountToUser(String userId, Currency currency) {
         if (clients.get(userId) != null) {
             AccountHolder accountHolder = (AccountHolder) clients.get(userId);
             accountHolder.addNewAccount(currency);

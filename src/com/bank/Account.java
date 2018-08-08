@@ -7,9 +7,9 @@ public class Account {
 
     private double balance;
     private long accountNumber;
-    private String currency;
+    private Currency currency;
 
-    public Account(String currency) {
+    public Account(Currency currency) {
         this.balance = 0;
         this.accountNumber = 10000000 + (long) (Math.random() * 10000000L);
         this.currency = currency;
@@ -19,12 +19,12 @@ public class Account {
         balance += moneyAmount;
     }
 
-    public boolean withdrawMoney(double moneyAmount) {
+    public void withdrawMoney(double moneyAmount) {
+        //exception
         if (balance < moneyAmount) {
-            return false;
+            return;
         }
         balance -= moneyAmount;
-        return true;
     }
 
     public double getBalance() {
@@ -43,11 +43,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 

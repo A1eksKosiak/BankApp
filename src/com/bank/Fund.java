@@ -1,8 +1,6 @@
 package com.bank;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Fund extends AccountHolder {
 
@@ -18,12 +16,10 @@ public class Fund extends AccountHolder {
                 String answerForSecretQuestion) {
 
         super(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
-        this.id = UUID.randomUUID().toString();
-        this.accounts = new ArrayList<>();
     }
 
     @Override
-    public void addNewAccount(String currency) {
+    public void addNewAccount(Currency currency) {
         if (accounts.size() >= 1){
             return;
         }
