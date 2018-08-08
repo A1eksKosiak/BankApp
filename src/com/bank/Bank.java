@@ -1,17 +1,16 @@
 package com.bank;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Bank {
 
     private String bankName;
 
-    private List<AccountHolder> clients;
+    private HashMap clients;
 
     public Bank(String bankName) {
         this.bankName = bankName;
-        this.clients = new ArrayList<>();
+        this.clients = new HashMap();
     }
 
     public String getBankName() {
@@ -26,53 +25,44 @@ public class Bank {
                         String secretQuestion,
                         String answerForSecretQuestion) {
         AccountHolder newAccountHolder = new User(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
-        clients.add(newAccountHolder);
+        clients.put(newAccountHolder.getId(), newAccountHolder);
     }
 
     public void addUser(AccountHolder accountHolder) {
-        clients.add(accountHolder);
+        clients.put(accountHolder.getId(), accountHolder);
     }
 
     public Double totalAmountOfMoney(String userID) {
-        for (AccountHolder accountHolder : clients) {
-            if (accountHolder.getId().equals(userID)) {
-                return accountHolder.totalAmount();
-            }
+        if (clients.get(userID) != null) {
+            AccountHolder accountHolder = (AccountHolder) clients.get(userID);
+            return accountHolder.totalAmount();
         }
         return null;
     }
 
-    public double totalAmountOfMoney(AccountHolder accountHolderr) {
-        return accountHolderr.totalAmount();
+    public double totalAmountOfMoney(AccountHolder accountHolder) {
+        return accountHolder.totalAmount();
     }
 
     public void addMoneyToUser(String userID, long accountID, double amountOfMoney) {
-        for (AccountHolder accountHolder : clients) {
-            if (accountHolder.getId().equals(userID)) {
-                accountHolder.addMoneyToAccount(accountID, amountOfMoney);
-                return;
-            }
+        if (clients.get(userID) != null) {
+            AccountHolder accountHolder = (AccountHolder) clients.get(userID);
+            accountHolder.addMoneyToAccount(accountID, amountOfMoney);
         }
     }
 
-    public String getUserID(String userName) {
-        if (findUser(userName)) {
-            for (AccountHolder accountHolder : clients) {
-                if (accountHolder.getName() == userName) {
-                    return accountHolder.getId();
-                }
-            }
-        }
-        return "N/A";
-    }
-
-    public boolean findUser(String userName) {
-        for (AccountHolder accountHolder : clients) {
-            if (accountHolder.getName() == userName) {
-                return true;
-            }
+    public boolean findUser(String userId) {
+        if (clients.get(userId) != null) {
+            return true;
         }
         return false;
+    }
+
+    public void addAccountToUser(String userId, String currency) {
+        if (clients.get(userId) != null) {
+            AccountHolder accountHolder = (AccountHolder) clients.get(userId);
+            accountHolder.addNewAccount(currency);
+        }
     }
 
     @Override
@@ -81,14 +71,5 @@ public class Bank {
                 "bankName='" + bankName + '\'' +
                 ", clients=" + clients +
                 '}';
-    }
-
-    public void addAccountToUser(String userId, String currency) {
-        for (AccountHolder client : clients) {
-            if (client.getId().equals(userId)) {
-                client.addNewAccount(currency);
-            }
-
-        }
     }
 }

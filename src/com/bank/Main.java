@@ -30,7 +30,7 @@ public class Main {
                 case 6:
                     System.out.println("Input your user ID");
                     String userId = scanner.next();
-                    bank.addAccountToUser(userId, "EUR");
+//                    bank.addAccountToUser(userId, "EUR");
                     break;
                 case 0:
                     return;
