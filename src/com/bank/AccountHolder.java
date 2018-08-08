@@ -146,6 +146,6 @@ public abstract class AccountHolder {
                 ", email='" + email + '\'' +
                 ", secretQuestion='" + secretQuestion + '\'' +
                 ", answerForSecretQuestion='" + answerForSecretQuestion + '\'' +
-                '}';
+                '}' + "\n";
     }
 }

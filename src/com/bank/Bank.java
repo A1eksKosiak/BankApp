@@ -82,4 +82,13 @@ public class Bank {
                 ", clients=" + clients +
                 '}';
     }
+
+    public void addAccountToUser(String userId, String currency) {
+        for (AccountHolder client : clients) {
+            if (client.getId().equals(userId)) {
+                client.addNewAccount(currency);
+            }
+
+        }
+    }
 }

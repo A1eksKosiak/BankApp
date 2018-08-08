@@ -20,8 +20,8 @@ public class User extends AccountHolder {
                 String answerForSecretQuestion) {
 
         super(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
-        this.id = UUID.randomUUID().toString();
-        this.accounts = new ArrayList<>();
+//        this.id = UUID.randomUUID().toString();
+//        this.accounts = new ArrayList<>();
     }
 
     @Override
