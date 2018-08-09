@@ -1,10 +1,10 @@
 package com.bank;
 
+import com.bank.Old.Fund;
+
 import java.util.Scanner;
 
-import static com.bank.Currency.EUR;
 import static com.bank.Currency.GBP;
-import static com.bank.Currency.USD;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +24,7 @@ public class Main {
                     addMoneyToAccount(bank);
                     break;
                 case 3:
+                    withdrawMoneyFromAccount(bank);
                     break;
                 case 4:
                     checkTotalAmountOfMoney(bank);
@@ -31,17 +32,21 @@ public class Main {
                 case 5:
                     System.out.println(bank);
                     break;
-                case 6:
-                    System.out.println("Input your user ID");
-                    String userId = scanner.next();
-//                    bank.addAccountToUser(userId, "EUR");
-                    break;
                 case 0:
                     return;
                 default:
                     break;
             }
         }
+    }
+
+    private static void withdrawMoneyFromAccount(Bank bank) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input your user ID");
+        String userId = scanner.next();
+        System.out.println("Add amount of money to withdraw");
+        double money = scanner.nextDouble();
+        bank.withdrawMoneyFromUser(userId, money);
     }
 
     private static void checkTotalAmountOfMoney(Bank bank) {
@@ -55,11 +60,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter userId");
         String userId = scanner.next();
-        System.out.println("Add account Id");
-        Long accountId = scanner.nextLong();
         System.out.println("Add amount of money");
         double money = scanner.nextDouble();
-        bank.addMoneyToUser(userId, accountId, money);
+        bank.addMoneyToUser(userId, money);
     }
 
     private static void createNewAccountHolder(Bank bank) {
@@ -91,7 +94,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input your name");
-        String fullName = scanner.next();
+        String name = scanner.next();
         System.out.println("Input your password");
         String password = scanner.next();
         System.out.println("Input your address");
@@ -105,35 +108,34 @@ public class Main {
         System.out.println("Input your answer to the secret question");
         String answerForSecretQuestion = scanner.next();
         if (caseNumber == 1) {
-            User newUser = new User(password,
-                    fullName,
+            AccountHolderInterface newUser = new UserAccountHolderInterface(
+                    name,
+                    password,
                     address,
                     phoneNumber,
                     email,
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newUser);
-            newUser.addNewAccount(EUR);
         } else if (caseNumber == 2) {
-            Business newBusiness = new Business(password,
-                    fullName,
+            AccountHolderInterface newBusiness = new BusinessAccountHolderInterface(
+                    name,
+                    password,
                     address,
                     phoneNumber,
                     email,
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newBusiness);
-            newBusiness.addNewAccount(USD);
         } else if (caseNumber == 3) {
-            Fund newFund = new Fund(password,
-                    fullName,
+            AccountHolderInterface newFund = new FundAccountHolderInterface(password,
+                    name,
                     address,
                     phoneNumber,
                     email,
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newFund);
-            newFund.addNewAccount(GBP);
         }
     }
 
@@ -145,7 +147,6 @@ public class Main {
         System.out.println("3 - withdraw money from users account.");
         System.out.println("4 - check total amount of money.");
         System.out.println("5 - print bank");
-        System.out.println("6 - open new account");
         System.out.println("0 - exit.");
     }
 

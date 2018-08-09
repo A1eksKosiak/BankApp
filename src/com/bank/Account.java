@@ -19,12 +19,14 @@ public class Account {
         balance += moneyAmount;
     }
 
-    public void withdrawMoney(double moneyAmount) {
+    public void withdrawMoney(double moneyAmount) throws InsufficientFundsException {
         //exception
-        if (balance < moneyAmount) {
-            return;
+        if (balance >= moneyAmount) {
+            balance -= moneyAmount;
+        } else {
+            double needs = moneyAmount - balance;
+            throw new InsufficientFundsException(needs);
         }
-        balance -= moneyAmount;
     }
 
     public double getBalance() {

@@ -1,5 +1,8 @@
 package com.bank;
 
+import com.bank.Old.AccountHolder;
+import com.bank.Old.User;
+
 import java.util.HashMap;
 
 public class Bank {
@@ -24,12 +27,12 @@ public class Bank {
                         String email,
                         String secretQuestion,
                         String answerForSecretQuestion) {
-        AccountHolder newAccountHolder = new User(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
-        clients.put(newAccountHolder.getId(), newAccountHolder);
+        AccountHolderInterface newAccountHolder = new UserAccountHolderInterface(password, fullName, address, phoneNumber, email, secretQuestion, answerForSecretQuestion);
+        clients.put(newAccountHolder.getUniqueIdentifier(), newAccountHolder);
     }
 
-    public void addUser(AccountHolder accountHolder) {
-        clients.put(accountHolder.getId(), accountHolder);
+    public void addUser(AccountHolderInterface accountHolder) {
+        clients.put(accountHolder.getUniqueIdentifier(), accountHolder);
     }
 
     public Double totalAmountOfMoney(String userID) {
@@ -44,10 +47,17 @@ public class Bank {
         return accountHolder.totalAmount();
     }
 
-    public void addMoneyToUser(String userID, long accountID, double amountOfMoney) {
+    public void addMoneyToUser(String userID, double amountOfMoney) {
         if (clients.get(userID) != null) {
-            AccountHolder accountHolder = (AccountHolder) clients.get(userID);
-            accountHolder.addMoneyToAccount(accountID, amountOfMoney);
+            AccountHolderInterface accountHolder = (AccountHolderInterface) clients.get(userID);
+            accountHolder.addMoney(amountOfMoney);
+        }
+    }
+
+    public void withdrawMoneyFromUser(String userId, double money) {
+        if (clients.get(userId) != null) {
+            AccountHolderInterface accountHolder = (AccountHolderInterface) clients.get(userId);
+            accountHolder.withdrawMoney(money);
         }
     }
 
