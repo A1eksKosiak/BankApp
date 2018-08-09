@@ -45,6 +45,11 @@ public class UserAccountHolderInterface implements AccountHolderInterface {
     }
 
     @Override
+    public double totalAmount() {
+        return regular.getBalance() + pension.getBalance();
+    }
+
+    @Override
     public void addMoney(double money) {
         regular.addMoneyToAccount(money / 10 * 9);
         pension.addMoneyToAccount(money / 10);

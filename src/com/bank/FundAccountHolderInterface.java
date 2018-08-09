@@ -21,6 +21,15 @@ public class FundAccountHolderInterface implements AccountHolderInterface {
     private String answerForSecretQuestion;
 
 
+    @Override
+    public double totalAmount() {
+        double balance = 0;
+        for (int i = 0; i < accounts.size(); i++) {
+            balance += accounts.get(i).getBalance();
+        }
+        return balance;
+    }
+
     public FundAccountHolderInterface(String name,
                                       String password,
                                       String address,
@@ -72,6 +81,7 @@ public class FundAccountHolderInterface implements AccountHolderInterface {
                     }
                     accounts.get(i).withdrawMoney(accountBalance);
                     money -= accountBalance;
+                    accounts.remove(i);
                 }
             }
         } catch (InsufficientFundsException e) {

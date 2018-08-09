@@ -37,7 +37,7 @@ public class Bank {
 
     public Double totalAmountOfMoney(String userID) {
         if (clients.get(userID) != null) {
-            AccountHolder accountHolder = (AccountHolder) clients.get(userID);
+            AccountHolderInterface accountHolder = (AccountHolderInterface) clients.get(userID);
             return accountHolder.totalAmount();
         }
         return null;

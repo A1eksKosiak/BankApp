@@ -54,12 +54,15 @@ public class BusinessAccountHolderInterface implements AccountHolderInterface {
     public String getUniqueIdentifier() {
         return id;
     }
-
     @Override
     public void addNewAccount(Currency currency) {
         return;
     }
 
+    @Override
+    public double totalAmount() {
+        return regular.getBalance();
+    }
 
     @Override
     public String toString() {

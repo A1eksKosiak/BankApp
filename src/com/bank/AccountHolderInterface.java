@@ -8,5 +8,7 @@ public interface AccountHolderInterface {
 
     void addNewAccount(Currency currency);
 
+    double totalAmount();
+
     String getUniqueIdentifier();
 }
