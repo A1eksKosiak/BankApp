@@ -70,7 +70,7 @@ public class Bank {
 
     public void addAccountToUser(String userId, Currency currency) {
         if (clients.get(userId) != null) {
-            AccountHolder accountHolder = (AccountHolder) clients.get(userId);
+            AccountHolderInterface accountHolder = (AccountHolderInterface) clients.get(userId);
             accountHolder.addNewAccount(currency);
         }
     }

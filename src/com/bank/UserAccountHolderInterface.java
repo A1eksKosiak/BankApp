@@ -51,6 +51,11 @@ public class UserAccountHolderInterface implements AccountHolderInterface {
     }
 
     @Override
+    public void addNewAccount(Currency currency) {
+        return;
+    }
+
+    @Override
     public void withdrawMoney(double money) {
         try {
             regular.withdrawMoney(money + (money * FINE));

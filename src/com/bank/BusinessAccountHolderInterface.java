@@ -25,8 +25,8 @@ public class BusinessAccountHolderInterface implements AccountHolderInterface {
                                           String email,
                                           String secretQuestion,
                                           String answerForSecretQuestion) {
-        this.password = password;
         this.name = name;
+        this.password = password;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -54,6 +54,12 @@ public class BusinessAccountHolderInterface implements AccountHolderInterface {
     public String getUniqueIdentifier() {
         return id;
     }
+
+    @Override
+    public void addNewAccount(Currency currency) {
+        return;
+    }
+
 
     @Override
     public String toString() {

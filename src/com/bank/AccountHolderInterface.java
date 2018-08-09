@@ -6,5 +6,7 @@ public interface AccountHolderInterface {
 
     void withdrawMoney(double money);
 
+    void addNewAccount(Currency currency);
+
     String getUniqueIdentifier();
 }

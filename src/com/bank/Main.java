@@ -136,6 +136,7 @@ public class Main {
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newFund);
+            bank.addAccountToUser(newFund.getUniqueIdentifier(),GBP);
         }
     }
 
