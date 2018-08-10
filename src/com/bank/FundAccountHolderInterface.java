@@ -9,6 +9,7 @@ import static com.bank.Currency.GBP;
 public class FundAccountHolderInterface implements AccountHolderInterface {
 
     private static final int MAX_MONEY_AMOUNT = 1000;
+    private static final int MAX_ACCOUNTS_SIZE = 1000;
 
     private List<Account> accounts;
     private String id;
@@ -49,22 +50,22 @@ public class FundAccountHolderInterface implements AccountHolderInterface {
     }
 
     @Override
-    public void addMoney(double money) {
-        if (accounts.size() == 1000) {
-            System.out.println("You have " + accounts.size() + " accounts, please withdraw some money");
-            return;
-        }
+    public void addMoney(double money) throws MaxAccountsSizeException {
         for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getBalance() != MAX_MONEY_AMOUNT) {
-                double accountBalance = accounts.get(i).getBalance();
-                if ((money + accountBalance) <= MAX_MONEY_AMOUNT) {
-                    accounts.get(i).addMoneyToAccount(money);
-                    return;
+            if (accounts.size() < MAX_ACCOUNTS_SIZE) {
+                if (accounts.get(i).getBalance() != MAX_MONEY_AMOUNT) {
+                    double accountBalance = accounts.get(i).getBalance();
+                    if ((money + accountBalance) <= MAX_MONEY_AMOUNT) {
+                        accounts.get(i).addMoneyToAccount(money);
+                        return;
+                    }
+                    double tempMoney = MAX_MONEY_AMOUNT - accountBalance;
+                    accounts.get(i).addMoneyToAccount(tempMoney);
+                    money -= tempMoney;
+                    addNewAccount(GBP);
                 }
-                double tempMoney = MAX_MONEY_AMOUNT - accountBalance;
-                accounts.get(i).addMoneyToAccount(tempMoney);
-                money -= tempMoney;
-                addNewAccount(GBP);
+            } else {
+                throw new MaxAccountsSizeException(money);
             }
         }
     }

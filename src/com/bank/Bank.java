@@ -43,11 +43,7 @@ public class Bank {
         return null;
     }
 
-    public double totalAmountOfMoney(AccountHolder accountHolder) {
-        return accountHolder.totalAmount();
-    }
-
-    public void addMoneyToUser(String userID, double amountOfMoney) {
+    public void addMoneyToUser(String userID, double amountOfMoney) throws MaxAccountsSizeException {
         if (clients.get(userID) != null) {
             AccountHolderInterface accountHolder = (AccountHolderInterface) clients.get(userID);
             accountHolder.addMoney(amountOfMoney);

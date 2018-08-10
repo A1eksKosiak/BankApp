@@ -2,7 +2,7 @@ package com.bank;
 
 public interface AccountHolderInterface {
 
-    void addMoney(double money);
+    void addMoney(double money) throws MaxAccountsSizeException;
 
     void withdrawMoney(double money);
 

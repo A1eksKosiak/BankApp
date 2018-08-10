@@ -1,7 +1,5 @@
 package com.bank;
 
-import com.bank.Old.Fund;
-
 import java.util.Scanner;
 
 import static com.bank.Currency.GBP;
@@ -62,7 +60,11 @@ public class Main {
         String userId = scanner.next();
         System.out.println("Add amount of money");
         double money = scanner.nextDouble();
-        bank.addMoneyToUser(userId, money);
+        try {
+            bank.addMoneyToUser(userId, money);
+        } catch (MaxAccountsSizeException e) {
+            System.out.println("Max count of accounts reached. Unable to add " + e.getAmount());
+        }
     }
 
     private static void createNewAccountHolder(Bank bank) {
@@ -136,7 +138,7 @@ public class Main {
                     secretQuestion,
                     answerForSecretQuestion);
             bank.addUser(newFund);
-            bank.addAccountToUser(newFund.getUniqueIdentifier(),GBP);
+            bank.addAccountToUser(newFund.getUniqueIdentifier(), GBP);
         }
     }
 
