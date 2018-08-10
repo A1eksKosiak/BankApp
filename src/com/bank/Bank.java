@@ -1,8 +1,5 @@
 package com.bank;
 
-import com.bank.Old.AccountHolder;
-import com.bank.Old.User;
-
 import java.util.HashMap;
 
 public class Bank {
